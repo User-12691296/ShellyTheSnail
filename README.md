@@ -18,5 +18,29 @@ C:> python -m pip instal numpy
 If you've already installed these packages, but are running into errors still, you can update python and update the installed packages.
 
 ## What to do?
-After downloading python and the game, 
-Join our discord if you have any questions
+After downloading python and the game, then learn how to play the game! The goal is to beat the final boss, kung fu krane! There's several ways to make this fight eaiser, so explore as much as possible until you can beat it!
+
+Then, plan out your tutorial. You have 10 minutes of tutorial time, and your tutorial is written in tutorial.tuto. There's a series of commands you can use, as described below, and you're trying to teach a complete newbie how to beat the game, from scratch!
+
+Join our discord if you have any questions!
+
+## Tutorial Specs
+To get your tutorial, the game will open the file `tutorial/tutorial.tuto`, and parse the commands in it into a tutorial you can see on screen
+
+### What is `tutorial.tuto`?
+It's a plaintext file format that we've created! In it are all your graphics commands, for each frame of the tutorial. In its most basic form, a tutorial will look like this if you open it up in a text editor:
+```
+#HEADER
+#FRAMES
+#INITIAL
+#LOBBY
+#DUNGEON
+#SWAMP
+#DESERT
+#MOUNTAINS
+#ARCTIC
+#DARKNESS
+#VOID
+#FINAL
+```
+  
