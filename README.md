@@ -65,39 +65,56 @@ Which sets a delay of 120 frames (2 seconds) before returning to the game after 
 
 ### The Package List and Graphics Commands
 Commands are listed with their arguments after, and a brief description in brackets
+All colours are specified as integers from 0-255, with 255 being brightest
 
 Default (from the start)
  - drawrect left top right bottom R G B (Draw a rectangle, 4 per frame)
- - drawchar text X Y R G B (Draw character, up to 10 between clear commands)
+ - drawchar char X Y R G B (Draw character, up to 10 between clear commands)
  - clear ()
  - Layers: 1
+ - Layer size: 640 x 400 (scaled to full screen)
  - Commands per frame: 3
+
 CleaningPowers (20 seconds)
- - Fill screen with specified colour
+ - clear R G B (fill screen with colour)
+
 Advanced (60 seconds)
- - + 1 layer
- - Switch layers anytime
- - Layers are now 4x the size of the screen, and can be shifted as needed, up to 10 pixels per frame
-Elite (60 seconds)
- - + 2 layers
+ - switchlayer layer (switch between which layer is drawn. This can be a great way to draw in advance. Resets)
+ - Layers: +1 (draw things without showing them, then switch to the layer you want to see)
+ - Layer size: 2560 x 1600 (640 x 400 segments drawn on screen at once)
+
+Elite (30 seconds)
+ - Layers: +2 (draw more things)
+
 Comprehensive (30 seconds)
- - + 6 commands per frame
+ - Commands per frame: +6
+
 Talkative (60 seconds)
- - Up to 10 characters on screen at once
- - 4 font sizes with drawchar: 12, 18, 24, 36
+ - drawchar text font_size X Y R G B (font size number from 0-3: 0=12, 1=18, 2=24, 3=36)
+ - Characters between clears: +10
+
 Shapes (45 seconds)
- - (max 4 per frame)
- - Draw polygon 
- - Draw ellipse
- - Draw box
+ - Shapes per frame: +4 (starts at 4)
+ - drawellipse left top right bottom R G B (draw ellipse nested into rectangle bounds)
+ - drawpolygon X1 Y1 X2 Y2 X3 Y3 X4 Y4 X5 Y5 X6 Y6 ... R G B (as many or as few vertices as you'd like, then the colour value)
+
 Tiles (45 seconds)
- - One tile per frame
+ - Load all the tile textures
+ - drawtile tile_texture_name X Y (draw a tile, take a look at the game's asset folder to see texture names)
+
 Entities and Projectiles (60 seconds)
- - One entity per frame
+ - Load all the entity and projectile textures (not the bosses though, you'll have to get creative for those!)
+ - drawentity entity_texture_name X Y (draw a tile, take a look at the game's asset folder to see texture names)
+
 Items (45 seconds)
- - One item per frame
+ - Load all the tile textures
+ - drawtile tile_texture_name X Y (draw a tile, take a look at the game's asset folder to see texture names)
+
 Regions (30 seconds)
- - Clamp region of layer drawn
+ - clampregion left top right bottom (Only this region of the layer is drawn to the screen)
+
 Display Control (45 seconds)
- - Layer shifts += 10
- - Flip, rotate layers on screen
+ - Layer shift size: +10
+ - flipdisp acrossX acrossY (flip the layer across the X or Y)
+ - rotatedisp rotation_change (<10 degrees per command)
+ - Order is: flip, rotation, region clamping, scaling to screen
