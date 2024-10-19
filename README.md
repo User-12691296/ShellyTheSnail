@@ -17,6 +17,8 @@ C:> python -m pip install numpy
 ```
 If you've already installed these packages, but are running into errors still, you can update python and update the installed packages.
 
+Once you've got everything installed, double click on main.pyw and away you go! Your python environment needs to be set up so that main.pyw is in the top-level path. Using python's IDLE will do this automatically, otherwise you can cd to the folder before running it from the console
+
 ## What to do?
 After downloading python and the game, then learn how to play the game! The goal is to beat the final boss, kung fu krane! There's several ways to make this fight eaiser, so explore as much as possible until you can beat it!
 
