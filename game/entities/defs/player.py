@@ -189,6 +189,9 @@ class Player(Creature):
         # Die when hunger drops to 0
         if hunger <= 0:
             self.damage(0.2)
+        if hunger > 1:
+            self.damage(hunger-1)
+            self.setAttribute("hunger", 1)
     def changeHunger(self, delta):
         self.setAttribute("hunger", self.getAttribute("hunger")+delta)
 
@@ -428,6 +431,7 @@ class Player(Creature):
         self.manager.changeWorld("overworld")
         self.setPos([461, 470])
 
+        self.initAttributes()
             
     def getMapDelta(self):
         bpos = self.getBufferPos()
