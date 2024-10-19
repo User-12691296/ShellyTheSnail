@@ -118,3 +118,6 @@ Display Control (45 seconds)
  - flipdisp acrossX acrossY (flip the layer across the X or Y)
  - rotatedisp rotation_change (<10 degrees per command)
  - Order is: flip, rotation, region clamping, scaling to screen
+
+### The Biome Specifiers
+Because 10 minutes is a ton of time to do everything all at once, we're letting you split your tutorial up into 10 different points in progression, mostly first entry to new biomes and boss arenas. Place your frames under each biome specifier, and they will run when the player reaches that point in progression, then the tutorial will cut back to the game. This lets you split up your 36,000 frames however you'd like across the 10 progression points, giving you full flexibility with your tutorial.
