@@ -4,13 +4,7 @@ import math
 import time
 from constants import GAME
 
-
-SWING_FRAMES = 10
-
-"""
-This class only affects players because fruits can only affect players but if you want to create an effect in general:
-it will work the exact same, just give the creature an action function and a reverse action function and then set the ticker to 1
-"""
+FRUIT_HUNGER_RESTORATION = 0.1
 
 class Fruit(Item):
     #Note to self, add healing effect thru init
@@ -33,6 +27,7 @@ class Fruit(Item):
     def onLeft(self, data, player, world, tile, tile_pos):
         player.changeHealth(self.heal_amount)
         self.effect(player, world, tile, tile_pos)
+        player.changeHunger(FRUIT_HUNGER_RESTORATION)
         fruit = player.inventory.getItemStack(player.inventory.selected_slot)
         fruit.consume()
 
@@ -48,6 +43,7 @@ class Watermelon (Item):
         insulation = player.getAttribute("thermal_insulation")
         insulation *= 1.2
         player.setAttribute("thermal_insulation", insulation)
+        player.changeHunger(FRUIT_HUNGER_RESTORATION)
         fruit = player.inventory.getItemStack(player.inventory.selected_slot)
         fruit.consume()
 
