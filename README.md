@@ -13,7 +13,7 @@ Download the code! To get the source code, you can download git and use git clon
 Then, after installing python, open command prompt and run:
 ```
 C:> python -m pip install pygame
-C:> python -m pip instal numpy
+C:> python -m pip install numpy
 ```
 If you've already installed these packages, but are running into errors still, you can update python and update the installed packages.
 
