@@ -78,45 +78,56 @@ Default (from the start)
  - Commands per frame: 3
 
 CleaningPowers (20 seconds)
+`buy clear`
  - clear R G B (fill screen with colour)
 
 Advanced (60 seconds)
+`buy advanced`
  - switchlayer layer (switch between which layer is drawn. This can be a great way to draw in advance. Resets)
  - shiftlayer X Y (shift where the layer is drawn on screen by up to 10 pixels on each axis)
  - Layers: +1 (draw things without showing them, then switch to the layer you want to see)
  - Layer size: 2560 x 1600 (640 x 400 segments drawn on screen at once)
 
 Elite (30 seconds)
+`buy elite`
  - Layers: +2 (draw more things)
 
 Comprehensive (30 seconds)
+`buy comprehensive`
  - Commands per frame: +6
 
 Talkative (60 seconds)
+`buy talkative`
  - drawchar text font_size X Y R G B (font size number from 0-3: 0=12, 1=18, 2=24, 3=36)
  - Characters between clears: +10
 
 Shapes (45 seconds)
+`buy shapes`
  - Shapes per frame: +4 (starts at 4)
  - drawellipse left top right bottom R G B (draw ellipse nested into rectangle bounds)
  - drawpolygon X1 Y1 X2 Y2 X3 Y3 X4 Y4 X5 Y5 X6 Y6 ... R G B (as many or as few vertices as you'd like, then the colour value)
 
 Tiles (45 seconds)
+`buy tiles`
  - Load all the tile textures
  - drawtile tile_texture_name X Y (draw a tile, take a look at the game's asset folder to see texture names)
 
-Entities and Projectiles (60 seconds)
- - Load all the entity and projectile textures (not the bosses though, you'll have to get creative for those!)
+Entities(60 seconds)
+`buy entities`
+ - Load all the entity textures (not the bosses though, you'll have to get creative for those!)
  - drawentity entity_texture_name X Y (draw a tile, take a look at the game's asset folder to see texture names)
 
 Items (45 seconds)
+`buy items`
  - Load all the tile textures
  - drawitem tile_texture_name X Y (draw a tile, take a look at the game's asset folder to see texture names)
 
 Regions (30 seconds)
+`buy regions`
  - clampregion left top right bottom (Only this region of the layer is drawn to the screen)
 
 Display Control (45 seconds)
+`buy control`
  - Layer shift size: +10 (See shiftlayer defined under Advanced header. Without advanced, you also unlock layer shifting)
  - flipdisp acrossX acrossY (flip the layer across the X or Y)
  - rotatedisp rotation_change (<10 degrees per command)
