@@ -82,7 +82,7 @@ class CrabBoss (Enemy):
     def damageTick(self):
         for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.size[0]-1):
             if not entity.isEnemy():
-                entity.damage(0.1)
+                entity.damage(0.15)
 
     def movementTick(self):
         if self.attack_pattern == 0 or self.attack_pattern == 2:
@@ -198,7 +198,7 @@ class MedusaBoss (Enemy):
     def damageTick(self):
         for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.size[0]-1):
             if not entity.isEnemy():
-                entity.damage(0.1)
+                entity.damage(0.4)
 
     def movementTick(self):
         super().movementTick()
@@ -299,7 +299,7 @@ class MedusaBoss (Enemy):
 # FINAL BOSSES
 class CraneBoss (Enemy):
     def __init__(self):
-        super().__init__(300, 2, 7)
+        super().__init__(400, 2, 7)
         self.size = (5,5)
         self.radius = 2
         self.loadInventory()
@@ -349,7 +349,7 @@ class CraneBoss (Enemy):
     def damageTick(self):
         for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.size[0]-1):
             if not entity.isEnemy():
-                entity.damage(0.2)
+                entity.damage(1.2)
 
     def movementTick(self):
         if self.isCooldownActive("first_move"):
@@ -443,9 +443,11 @@ class CraneBoss (Enemy):
         if self.isCooldownActive("bullets"): 
             return
 
-        number_of_bullets = 8
+        number_of_bullets = 6
+        ppos = self.world.getPlayer().getPos()
+        atp = math.atan2(ppos[1]-self.pos[1], ppos[0]-self.pos[0])
         for i in range(number_of_bullets):
-            angle = (360/number_of_bullets)*i
+            angle = (60/number_of_bullets)*i + atp - 60/2
             pos = self.pos
             self.projectile = PROJECTILE_CLASSES.PoisonDart(pos, angle)
             self.projectile.giveImmunity(self)
@@ -463,7 +465,6 @@ class CraneBoss (Enemy):
 
     def handleAttacksForPattern2(self):
         self.handleAttacksForPattern1()
-        
 
     def isFinalBoss(self):
         return True
@@ -489,7 +490,7 @@ class CraneBoss (Enemy):
 
 class WhaleBoss (Enemy):
     def __init__(self):
-        super().__init__(400, 2, 8)
+        super().__init__(600, 2, 8)
         self.size = (9,9)
         self.radius = 2
         self.loadInventory()
@@ -549,7 +550,7 @@ class WhaleBoss (Enemy):
         if self.active:
             for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.radius+1):
                 if not entity.isEnemy():
-                    entity.damage(0.5)
+                    entity.damage(2.0)
 
     def movementTick(self):
         pass
@@ -629,7 +630,6 @@ class WhaleBoss (Enemy):
   
     def isFinalBoss(self):
         return self.final_boss
-      
 
     def draw(self, display, display_topleft=(0, 0)):
         self.updateHitbox()
@@ -653,7 +653,7 @@ class WhaleBoss (Enemy):
 
 class EvilSnail (Enemy):
     def __init__(self):
-        super().__init__(300, 0, 35)
+        super().__init__(1000, 0, 35)
         self.stuck = False
         BOSS_CONDITIONS.setBossInvincibillity(True)
 
@@ -747,7 +747,7 @@ class EvilSnail (Enemy):
 
 class DragonBoss (Enemy):
     def __init__(self):
-        super().__init__(200, 2, 8)
+        super().__init__(300, 2, 8)
         self.size = (5,5)
         self.radius = 2
         self.loadInventory()
@@ -791,7 +791,7 @@ class DragonBoss (Enemy):
     def damageTick(self):
         for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.size[0]-1):
             if not entity.isEnemy():
-                entity.damage(0.2)
+                entity.damage(0.8)
 
     def movementTick(self):
         if self.attack_pattern == 0:
@@ -929,7 +929,7 @@ class WormBoss(Enemy):
     def damageTick(self):
         for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.size[0]-1):
             if not entity.isEnemy():
-                entity.damage(0.2)
+                entity.damage(0.8)
 
     def movementTick(self):
         if self.attack_pattern == 0:
@@ -1071,7 +1071,7 @@ class MountainBoss (Enemy):
     def damageTick(self):
         for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.size[0]-1):
             if not entity.isEnemy():
-                entity.damage(0.2)
+                entity.damage(1.0)
 
     def movementTick(self):
         if self.attack_pattern == 0:
@@ -1214,6 +1214,8 @@ class DarknessBoss (Enemy):
         self.image = pygame.transform.scale_by(self.image, 4)
         self.image_rect = self.image.get_rect()
 
+        self.total_time = 120
+
 
     def loadInventory(self):
         self.inventory = Inventory(5,1,1)
@@ -1237,7 +1239,7 @@ class DarknessBoss (Enemy):
     def damageTick(self):
         for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.size[0]-1):
             if not entity.isEnemy():
-                entity.damage(0.8)
+                entity.damage(2.0)
 
     def movementTick(self):
         if self.attack_pattern == 0:

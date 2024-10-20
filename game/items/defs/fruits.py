@@ -4,6 +4,14 @@ import math
 import time
 from constants import GAME
 
+
+SWING_FRAMES = 10
+
+"""
+This class only affects players because fruits can only affect players but if you want to create an effect in general:
+it will work the exact same, just give the creature an action function and a reverse action function and then set the ticker to 1
+"""
+
 FRUIT_HUNGER_RESTORATION = 0.1
 
 class Fruit(Item):
@@ -30,7 +38,6 @@ class Fruit(Item):
         player.changeHunger(FRUIT_HUNGER_RESTORATION)
         fruit = player.inventory.getItemStack(player.inventory.selected_slot)
         fruit.consume()
-
 
     def tick(self, data, player, world):
         data["animations"].tick()
@@ -78,9 +85,9 @@ class SilverFruit(Fruit):
         player.setArmorValues(self.original_armor_value, self.original_dmg_threshold)
 
 FRUITS = []
-Fruit("orange", "orange", 0, 1).addToGroup(FRUITS)
-Fruit("banana", "banana", 0, 1).addToGroup(FRUITS)
+Fruit("orange", "orange", 0, 4).addToGroup(FRUITS)
+Fruit("banana", "banana", 0, 4).addToGroup(FRUITS)
 Watermelon("watermelon", "watermelon", 0).addToGroup(FRUITS)
-Fruit("apple", "apple", 0, 3).addToGroup(FRUITS)
-Lemon("lemon", "lemon", 0, 1, 100).addToGroup(FRUITS)
-SilverFruit("silver_apple", "silver_apple", 1, 100, 100, 10).addToGroup(FRUITS)
+Fruit("apple", "apple", 0, 10).addToGroup(FRUITS)
+Lemon("lemon", "lemon", 0, 10, 100).addToGroup(FRUITS)
+SilverFruit("silver_apple", "silver_apple", 0, 20, 5, 2).addToGroup(FRUITS)

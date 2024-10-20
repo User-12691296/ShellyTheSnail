@@ -21,7 +21,7 @@ class Item(events.EventAcceptor):
     def initData(self, stack):
         data = {"stack": stack,
                 "rot": 0,
-                "rarity": 1, # Level from 1-5, 1-3 is upgradable, 4 is craftable, 5 is endgame loot
+                "rarity": 0, # Level from 1-5, 1-3 is upgradable, 4 is craftable, 5 is endgame loot
                 "animations": animations.Animated()}
         
         return data
@@ -138,7 +138,7 @@ class ItemStack:
         self.item.deSelect(self.data)
 
     def getRarity(self):
-        return self.data.get("rarity", 1)
+        return self.data.get("rarity", 0)
     
     def setRarity(self, rarity):
         self.data["rarity"] = rarity

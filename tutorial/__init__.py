@@ -83,7 +83,7 @@ class TutorialManager(events.Alpha):
                          "drawrect":self.cmdDrawRect,
                          "drawchar":self.cmdDrawChar,
                          "drawentity":self.cmdDrawEntity,
-                         "drawitems":self.cmdDrawItem,
+                         "drawitem":self.cmdDrawItem,
                          "switchlayer":self.cmdSwitchLayers,
                          "shiftlayer":self.cmdShiftLayers,
                          "drawellipse":self.cmdDrawEllipse,
@@ -131,8 +131,19 @@ class TutorialManager(events.Alpha):
         if key == pygame.K_ESCAPE:
             self.returnToGame()
         
+    def drawActiveLayerToSurface(self, surface):
+        temp = self.getActiveLayer()
+        temp = pygame.transform.flip(temp, *self.flips)
+        temp = pygame.transform.rotate(temp, self.rot)
+        region = pygame.Rect(self.layer_drawn_region.left*4,
+                             self.layer_drawn_region.top*4,
+                             self.layer_drawn_region.width*4,
+                             self.layer_drawn_region.height*4)
+        surface.blit(pygame.transform.scale_by(temp, 4), self.layer_offset, region)
+        
     def draw(self, surface):
         if self.cooldown_to_return > 0:
+            self.drawActiveLayerToSurface(surface)
             self.cooldown_to_return -= 1
             return
         elif self.cooldown_to_return == 0:
@@ -154,14 +165,7 @@ class TutorialManager(events.Alpha):
             trailing_frame = self.last_frame_in_stage
         self.runCommands(self.frames[leading_frame+1:trailing_frame+1])
 
-        temp = self.getActiveLayer()
-        temp = pygame.transform.flip(temp, *self.flips)
-        temp = pygame.transform.rotate(temp, self.rot)
-        region = pygame.Rect(self.layer_drawn_region.left*4,
-                             self.layer_drawn_region.top*4,
-                             self.layer_drawn_region.width*4,
-                             self.layer_drawn_region.height*4)
-        surface.blit(pygame.transform.scale_by(temp, 4), self.layer_offset, region)
+        self.drawActiveLayerToSurface(surface)
 
         self.cur_frame = trailing_frame + 1
         if self.cur_frame > self.last_frame_in_stage:

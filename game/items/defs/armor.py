@@ -60,10 +60,10 @@ class MaceArmor (Armor):
             data["animations"].create("cooldown", self.cooldown)
 
 ARMORS = []
-Armor("iron_helmet", "iron_helmet", 0, 3.8, 10).addToGroup(ARMORS)
-Armor("croc", "croc", 0, 2.4, 10).addToGroup(ARMORS)
-Armor("swamp_armor", "swamp_armor", 0, 2.9, 10).addToGroup(ARMORS)
-MaceArmor("crystal_armor", "crystal_armor", 0, 3.5, 10, 300, 8, PROJECTILE_CLASSES.CrystalMaceProj).addToGroup(ARMORS)
-Armor("arctic_armor", "arctic_armor", 0, 4.5, 10).addToGroup(ARMORS)
-MaceArmor("deepdark_armor", "deepdark_armor", 0, 4.8, 10, 300, 8, PROJECTILE_CLASSES.DarknessMaceProj).addToGroup(ARMORS)
-MaceArmor("dragon_hide", "dragon_hide", 0, 5.5, 10, 300, 8, PROJECTILE_CLASSES.MoltenMaceProj).addToGroup(ARMORS)
+Armor("iron_helmet", "iron_helmet", 0, 3.8, 3.0).addToGroup(ARMORS)
+MaceArmor("crystal_armor", "crystal_armor", 0, 2.0, 0.5, 300, 8, PROJECTILE_CLASSES.CrystalMaceProj).addToGroup(ARMORS)
+Armor("swamp_armor", "swamp_armor", 0, 2.9, 0.6).addToGroup(ARMORS)
+Armor("croc", "croc", 0, 3.2, 0.7).addToGroup(ARMORS)
+MaceArmor("dragon_hide", "dragon_hide", 0, 4.8, 1.0, 300, 8, PROJECTILE_CLASSES.MoltenMaceProj).addToGroup(ARMORS)
+Armor("arctic_armor", "arctic_armor", 0, 4.0, 2.0).addToGroup(ARMORS)
+MaceArmor("deepdark_armor", "deepdark_armor", 0, 6.4, 5.0, 300, 8, PROJECTILE_CLASSES.DarknessMaceProj).addToGroup(ARMORS)

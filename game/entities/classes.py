@@ -288,13 +288,13 @@ class Creature(Entity):
         dmg_threshold = self.getAttribute("damage_threshold")
 
         if general_armor > 0 and dmg_threshold > 0:
-            if damage < dmg_threshold: 
+            if damage <= dmg_threshold:
                 damage /= general_armor  # Minecraft style
-                damage = max(damage, 0) 
-
-            else:
-                damage -= general_armor  # Terraria style
-                damage = max(damage, 0)  
+                damage = max(damage, 0)
+            if damage > dmg_threshold:
+                damage *= 2
+                damage /= general_armor
+                damage = max(damage, 0)
 
         return (damage/(2**dtt))
     
@@ -425,13 +425,3 @@ class Enemy(Creature):
             self.movement_this_tick[0] = self.pos[0]-old_pos[0]
 
         self.registerCooldown("movement", self.getAttribute("movement_speed"))
-
-    """ CODE TO ADD MOB DROPS """
-    """ def loadInventory(self):
-        self.inventory = Inventory(3,1,1)
-        self.inventory.setItemStack(ItemStack("lil_sword", 1), 1)
-        self.inventory.setActiveStack(1)
-        
-    def kill(self):
-        super().kill()
-        self.inventory.throwStackInLoc(self.world,self.pos,1) """
