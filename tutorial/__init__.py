@@ -237,7 +237,7 @@ class TutorialManager(events.Alpha):
 
         pos = int(args[1]), int(args[2])
         if self.hasPackage("talkative"):
-            font = self.fonts[int(args[1])]
+            font = self.fonts[int(args[3])]
             colour = [int(args[4]), int(args[5]), int(args[6])]
         else:
             font = self.fonts[1]
