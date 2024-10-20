@@ -82,6 +82,7 @@ CleaningPowers (20 seconds)
 
 Advanced (60 seconds)
  - switchlayer layer (switch between which layer is drawn. This can be a great way to draw in advance. Resets)
+ - shiftlayer X Y (shift where the layer is drawn on screen by up to 10 pixels on each axis)
  - Layers: +1 (draw things without showing them, then switch to the layer you want to see)
  - Layer size: 2560 x 1600 (640 x 400 segments drawn on screen at once)
 
@@ -116,10 +117,10 @@ Regions (30 seconds)
  - clampregion left top right bottom (Only this region of the layer is drawn to the screen)
 
 Display Control (45 seconds)
- - Layer shift size: +10
+ - Layer shift size: +10 (See shiftlayer defined under Advanced header. Without advanced, you also unlock layer shifting)
  - flipdisp acrossX acrossY (flip the layer across the X or Y)
  - rotatedisp rotation_change (<10 degrees per command)
  - Order is: flip, rotation, region clamping, scaling to screen
 
 ### The Biome Specifiers
-Because 10 minutes is a ton of time to do everything all at once, we're letting you split your tutorial up into 10 different points in progression, mostly first entry to new biomes and boss arenas. Place your frames under each biome specifier, and they will run when the player reaches that point in progression, then the tutorial will cut back to the game. This lets you split up your 36,000 frames however you'd like across the 10 progression points, giving you full flexibility with your tutorial.
+Because 10 minutes is a ton of time to do everything all at once, we're letting you split your tutorial up into 10 different points in progression, mostly first entry to new biomes and boss arenas. Place your frames under each biome specifier, and they will run when the player reaches that point in progression, then the tutorial will cut back to the game. This lets you split up your 36,000 frames however you'd like across the 10 progression points, giving you full flexibility with your tutorial!
