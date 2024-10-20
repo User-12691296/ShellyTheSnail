@@ -98,7 +98,7 @@ Comprehensive (30 seconds)
 
 Talkative (60 seconds)
 `buy talkative`
- - drawchar text font_size X Y R G B (font size number from 0-3: 0=12, 1=18, 2=24, 3=36)
+ - drawchar text X Y font_size R G B (font size number from 0-3: 0=12, 1=18, 2=24, 3=36)
  - Characters between clears: +10
 
 Shapes (45 seconds)
