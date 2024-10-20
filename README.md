@@ -110,7 +110,7 @@ Entities and Projectiles (60 seconds)
 
 Items (45 seconds)
  - Load all the tile textures
- - drawtile tile_texture_name X Y (draw a tile, take a look at the game's asset folder to see texture names)
+ - drawitem tile_texture_name X Y (draw a tile, take a look at the game's asset folder to see texture names)
 
 Regions (30 seconds)
  - clampregion left top right bottom (Only this region of the layer is drawn to the screen)
