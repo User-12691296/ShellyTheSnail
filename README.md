@@ -115,12 +115,12 @@ Tiles (45 seconds)
 Entities(60 seconds)
 `buy entities`
  - Load all the entity textures (not the bosses though, you'll have to get creative for those!)
- - drawentity entity_texture_name X Y (draw a tile, take a look at the game's asset folder to see texture names)
+ - drawentity entity_texture_name X Y (draw an entity, take a look at the game's asset folder to see texture names)
 
 Items (45 seconds)
 `buy items`
  - Load all the tile textures
- - drawitem tile_texture_name X Y (draw a tile, take a look at the game's asset folder to see texture names)
+ - drawitem size tile_texture_name X Y (draw an item to the screen, take a look at the game's asset folder to see texture names. size is small, medium or large, and represents the size of the item texture (you'll understand when you check the asset folder))
 
 Regions (30 seconds)
 `buy regions`
