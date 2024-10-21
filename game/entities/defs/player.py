@@ -285,7 +285,7 @@ class Player(Creature):
             self.biome.append("deepdark")
             pygame.event.post(pygame.event.Event(events.RUN_TUTORIAL, stage=7))    
 
-        elif "void" in self.world.getGroupsWithTile(self.getPos()) and "void" not in self.biome: 
+        elif "void" in self.world.getGroupsWithTile(self.getPos()) and "void" not in self.biome:
             self.biome.append("void")
             pygame.event.post(pygame.event.Event(events.RUN_TUTORIAL, stage=8))    
 

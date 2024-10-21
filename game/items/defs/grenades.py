@@ -53,7 +53,7 @@ class Dynamite(Item):
     def __init__(self):
         super().__init__("dynamite", "dynamite", True, 0)
 
-        self.damage = 500
+        self.damage = 20
         self.range = 10
 
     def initData(self, stack):

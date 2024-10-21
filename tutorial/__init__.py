@@ -2,7 +2,7 @@ import pygame
 import os
 from misc import events
 from game.entities.registry import REGISTRY as ENTITY_REGISTRY
-from game.items import REGISTRY as ITEM_REGISTRY
+from game.items import getRegistry as ITEM_REGISTRY_GETTER
 from game.projectiles.registry import REGISTRY as PROJECTILE_REGISTRY
 
 FOLDER = "tutorial"
@@ -384,7 +384,7 @@ class TutorialManager(events.Alpha):
         tile = args[0]
         pos = (int(args[1]), int(args[2]))
         
-        self.game_manager.getWorld().map.atlas.drawTexture(self.getActiveLayer(), pos)
+        self.game_manager.getWorld().map.tileAtlas.drawTexture(self.getActiveLayer(), pos, tile)
 
 
     def loadItems(self):
@@ -398,11 +398,19 @@ class TutorialManager(events.Alpha):
         
         self.items_this_tick += 1
         assert self.items_this_tick <= self.ITEMS_LIMIT, "Exceeded items limit for this frame"
+
+        sizes = {"small":0,
+                 "s":0,
+                 "medium":1,
+                 "m":1,
+                 "large":2,
+                 "l":2}
+
+        texsize = sizes[args[0]]
+        item = args[1]
+        pos = (int(args[2]), int(args[3]))
         
-        item = args[0]
-        pos = (int(args[1]), int(args[2]))
-        
-        ITEM_REGISTRY.atlas.drawTexture(self.getActiveLayer(), pos)
+        ITEM_REGISTRY_GETTER().atlasses[texsize].drawTexture(self.getActiveLayer(), pos, item)
 
 
     def loadRegions(self, *args):

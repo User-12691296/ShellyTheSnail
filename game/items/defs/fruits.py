@@ -44,7 +44,7 @@ class Fruit(Item):
 
 class Watermelon (Item):
     def __init__(self, itemid, tex_name, size):
-        super().__init__(itemid, tex_name, size)
+        super().__init__(itemid, tex_name, True, size)
 
     def onLeft(self, data, player, world, tile, tile_pos):
         insulation = player.getAttribute("thermal_insulation")

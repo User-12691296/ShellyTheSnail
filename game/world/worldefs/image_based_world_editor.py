@@ -3,8 +3,8 @@ import pygame
 import numpy
 import json
 
-IMAGE_PATH = "pixil-frame-0 (10).png"
-WORLD_NAME = "crystal_level"
+IMAGE_PATH = "overworld.png"
+WORLD_NAME = "overworld"
 LEVELS_PATH = "levels.json"
 
 TILE_SEP = ";"
@@ -14,7 +14,6 @@ ROWS_STORAGE = "tiles"
 
 IGNORE_TILE_VAL = "error"
 RG_DEFS = {(0, 0): IGNORE_TILE_VAL,
-           (1,1):"black",
            (0, 255):"grass",
            (255, 0):"barrier",
            (15,15):"darkwall",
@@ -49,7 +48,7 @@ RG_DEFS = {(0, 0): IGNORE_TILE_VAL,
            (0, 200): "volcanomolten",
 
            (64, 64): "deathvoid",
-           (125, 125): "walkablevoid",
+           (1, 1): "walkablevoid",
 
 
            (167, 10): "shadowbrick",

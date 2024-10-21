@@ -9,7 +9,10 @@ from ...projectiles import PROJECTILE_CLASSES
 from .darknessenemies import DarknessKnightmare1
 from .swampenemies import SwampAnaconda, SwampTangler
 from ...items import Item, ItemStack, Inventory
+from misc import events
 import time
+
+FIRST_CRANE_TICK = True
 
 class CrabBoss (Enemy):
     def __init__(self):
@@ -80,7 +83,7 @@ class CrabBoss (Enemy):
         self.changeHealth(-total_damage)
 
     def damageTick(self):
-        for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.size[0]-1):
+        for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.size[0]//2+2):
             if not entity.isEnemy():
                 entity.damage(0.15)
 
@@ -196,7 +199,7 @@ class MedusaBoss (Enemy):
         return True
 
     def damageTick(self):
-        for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.size[0]-1):
+        for entity in self.world.getEntitiesInRangeOfTile(self.pos, self.size[0]//2+2):
             if not entity.isEnemy():
                 entity.damage(0.4)
 
@@ -315,7 +318,6 @@ class CraneBoss (Enemy):
         self.image_rect = self.image.get_rect()
 
         self.initial_tick = True
-        self.max_health = 300
         self.should_spawn_snail = False
         self.should_spawn_whale = False
 
@@ -359,14 +361,13 @@ class CraneBoss (Enemy):
         else:
             pass
 
-    def tick(self):
+    def tick(self):        
         if BOSS_CONDITIONS.getBossInvincibillity():
-            self.setAttribute("health", self.max_health)
+            self.setAttribute("health", self.getAttribute("max_health"))
         super().tick()
 
         if BOSS_CONDITIONS.getTrueBossFirstMove() or (BOSS_CONDITIONS.getBossFirstMove() and not BOSS_CONDITIONS.getWhaleAlive()):
             self.whale = WhaleBoss()
-            print("hi")
             BOSS_CONDITIONS.setWhaleAlive(True)
             self.should_spawn_whale = True
         if BOSS_CONDITIONS.getTrueBossFirstMove() or (BOSS_CONDITIONS.getBossFirstMove() and not BOSS_CONDITIONS.getSnailAlive()):
@@ -375,7 +376,7 @@ class CraneBoss (Enemy):
             self.should_spawn_snail = True
 
         if BOSS_CONDITIONS.getBossFirstMove():
-            self.setAttribute("health", self.max_health)
+            self.setAttribute("health", self.getAttribute("max_health"))
             self.pos = [30,30]
 
             if BOSS_CONDITIONS.getDougSpawn():
@@ -421,7 +422,12 @@ class CraneBoss (Enemy):
         if self.attack_progress > 0:
             self.attack_progress += 1
 
-        # print(self.attack_progress, self.attack_pattern, self.getCooldownFrame("attack_pattern_cooldown"))
+    def finalTick(self):
+        global FIRST_CRANE_TICK
+
+        if FIRST_CRANE_TICK:
+            pygame.event.post(pygame.event.Event(events.RUN_TUTORIAL, stage=9))
+            FIRST_CRANE_TICK = False
 
     def clearAttributes(self, cooldown):
         self.attack_progress = 0
@@ -445,15 +451,15 @@ class CraneBoss (Enemy):
 
         number_of_bullets = 6
         ppos = self.world.getPlayer().getPos()
-        atp = math.atan2(ppos[1]-self.pos[1], ppos[0]-self.pos[0])
+        atp = math.degrees(math.atan2(ppos[1]-self.pos[1], ppos[0]-self.pos[0]))
         for i in range(number_of_bullets):
-            angle = (60/number_of_bullets)*i + atp - 60/2
+            angle = (120/number_of_bullets)*i + atp - 120/2
             pos = self.pos
             self.projectile = PROJECTILE_CLASSES.PoisonDart(pos, angle)
             self.projectile.giveImmunity(self)
             self.world.addProjectile(self.projectile)
 
-        self.registerCooldown("bullets", 25)
+        self.registerCooldown("bullets", 12)
 
     def updatePositionForPattern2(self):
         speed = 1
@@ -507,8 +513,7 @@ class WhaleBoss (Enemy):
 
         self.final_boss = False
         self.alpha = 255
-
-        self.max_health = 400
+        
         self.first_move = True
         
         self.first_time = time.time()
@@ -557,7 +562,7 @@ class WhaleBoss (Enemy):
 
     def tick(self):
         if BOSS_CONDITIONS.getBossInvincibillity() and self.isFinalBoss():
-            self.setAttribute("health", self.max_health)
+            self.setAttribute("health", self.getAttribute("max_health"))
 
         super().tick()
         self.first_time = time.time()
@@ -615,18 +620,6 @@ class WhaleBoss (Enemy):
         
 
         self.registerCooldown("bullets", 25)
-
-    # def updatePositionForPattern2(self):
-    #     speed = 1
-    #     self.x = self.initial_player_pos[0]-20 + self.attack_progress//speed
-    #     self.y = self.initial_player_pos[1]
-    #     self.setPos((self.x, self.y))
-    #     if self.attack_progress > 40*speed:
-    #         self.clearAttributes(100)
-
-    # def handleAttacksForPattern2(self):
-    #     self.handleAttacksForPattern1()
-
   
     def isFinalBoss(self):
         return self.final_boss

@@ -25,11 +25,11 @@ BasicTile("lobbywall", "lobbywall", False).addTileToList(OVERWORLD_TILES)
 
 
 #texname and id is switched im sorry
-WorldSwitcher("portal", "bossarena", "bossarena", (10,10), False).addTileToList(OVERWORLD_TILES)
-WorldSwitcher("portal", "crystalwarp", "crystal_level", (10,50), False).addTileToList(OVERWORLD_TILES)
-WorldSwitcher("portal", "snowwarp", "level_3", (100,10), False).addTileToList(OVERWORLD_TILES)
-WorldSwitcher("portal", "deepdarkwarp", "deep_dark_level", (125,15), False).addTileToList(OVERWORLD_TILES)
-WorldSwitcher("portal", "overworldwarp", "overworld", (9999,9999), False).addTileToList(OVERWORLD_TILES)
+WorldSwitcher("portal", "bossarena", "bossarena", [10,10], False).addTileToList(OVERWORLD_TILES)
+WorldSwitcher("portal", "crystalwarp", "crystal_level", [10,50], False).addTileToList(OVERWORLD_TILES)
+WorldSwitcher("portal", "snowwarp", "level_3", [100,10], False).addTileToList(OVERWORLD_TILES)
+WorldSwitcher("portal", "deepdarkwarp", "deep_dark_level", [125,15], False).addTileToList(OVERWORLD_TILES)
+WorldSwitcher("portal", "overworldwarp", "overworld", [461,470], False).addTileToList(OVERWORLD_TILES)
 # 9999 turns into nothing, they js gonna go back to where they came from.
 
 BasicTile("sand", "sand").addTileToList(OVERWORLD_TILES)

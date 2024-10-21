@@ -20,3 +20,8 @@ def initialiseItems(item_entity_class):
     Inventory.setItemEntityClass(item_entity_class)
     
     registry.registerAllItems(REGISTRY)
+
+def getRegistry():
+    global REGISTRY
+
+    return REGISTRY

@@ -56,7 +56,7 @@
 "void":{"type":"biome",
 	"tiles":["deathvoid",
 		"walkablevoid"],
-	"extras":{"insanity_level":1}},
+	"extras":{}},
 
 "lobby":{"type":"biome",
 	"tiles":["shadowbrick",

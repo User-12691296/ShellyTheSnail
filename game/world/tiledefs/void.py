@@ -4,7 +4,7 @@ SPEEDY_MAGMA_WALKING = "red_protection"
 
 class WalkableVoidTile(BasicTile):
     def __init__(self):
-        super().__init__("walkablevoid", "volcanomolten", True)
+        super().__init__("walkablevoid", "black", True)
 
     def onWalk(self, world, tile_pos):
         stack = world.getPlayer().inventory.getSelectedStack()
